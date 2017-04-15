@@ -24,7 +24,7 @@
         }
       })
       .state('sellings.sellItem', {
-        url: '/create',
+        url: '/sellItem',
         templateUrl: 'modules/sellings/client/views/form-sell-item.client.view.html',
         controller: 'SellingsController',
         controllerAs: 'vm',

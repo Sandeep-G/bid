@@ -1,5 +1,5 @@
 // Sellings service used to communicate Sellings REST endpoints
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -9,11 +9,15 @@
   SellingsService.$inject = ['$resource'];
 
   function SellingsService($resource) {
-    return $resource('api/sellings/:sellingId', {
+    return $resource('/api/sellings/:sellingId', {
       sellingId: '@_id'
     }, {
       update: {
-        url: 'api/sellings',
+        url: '/api/sellings',
+        method: 'PUT'
+      },
+      save: {
+        url: '/api/sellings/sellItem',
         method: 'PUT'
       }
     });

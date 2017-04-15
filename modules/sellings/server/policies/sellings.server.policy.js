@@ -15,70 +15,34 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/sellings',
-      permissions: '*'
-    }, {
-      resources: '/api/sellings/:sellingId',
-      permissions: '*'
-    }, {
       resources: '/api/sellings/sellItem',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/sellings',
-      permissions: ['get', 'post']
-    }, {
-      resources: '/api/sellings/:sellingId',
-      permissions: ['get']
-    }, {
       resources: '/api/sellings/sellItem',
       permissions: ['put']
     }]
   }, {
     roles: ['guest'],
-    allows: [{
-      resources: '/api/sellings',
-      permissions: ['get']
-    }, {
-      resources: '/api/sellings/:sellingId',
-      permissions: ['get']
-    }]
+    allows: []
   },
   {
     roles: ['admin'],
     allows: [{
-      resources: '/sellings/api/sellings',
-      permissions: '*'
-    }, {
-      resources: '/sellings/api/sellings/:sellingId',
-      permissions: '*'
-    }, {
       resources: '/sellings/api/sellings/sellItem',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/sellings/api/sellings',
-      permissions: ['get', 'post']
-    }, {
-      resources: '/sellings/api/sellings/:sellingId',
-      permissions: ['get']
-    }, {
       resources: '/sellings/api/sellings/sellItem',
       permissions: ['put']
     }]
   }, {
     roles: ['guest'],
-    allows: [{
-      resources: '/sellings/api/sellings',
-      permissions: ['get']
-    }, {
-      resources: '/sellings/api/sellings/:sellingId',
-      permissions: ['get']
-    }]
+    allows: []
   }]);
 };
 

@@ -23,17 +23,5 @@
       roles: ['user']
     });
 
-    // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'sellings', {
-      title: 'List Sellings',
-      state: 'sellings.list'
-    });
-
-    // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'sellings', {
-      title: 'Create Selling',
-      state: 'sellings.create',
-      roles: ['user']
-    });
   }
 }());
