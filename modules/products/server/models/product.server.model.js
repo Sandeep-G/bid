@@ -28,10 +28,10 @@ var ProductSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  endsAt: {
-    type: Date,
-    required: 'Please specify end date for auction'
-  },
+  // endsAt: {
+  //   type: Date,
+  //   required: 'Please specify end date for auction'
+  // },
   startingBid: {
     type: Number,
     required: 'Please enter starting bid'
