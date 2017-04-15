@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Sellingcarts</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="sellingcart in vm.sellingcarts"
+       ui-sref="sellingcarts.view({ sellingcartId: sellingcart._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="sellingcart.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="sellingcart.user" ng-bind="sellingcart.user.displayName"></span>
+        <span ng-if="!sellingcart.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="sellingcart.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.sellingcarts.$resolved && !vm.sellingcarts.length">
+    No Sellingcarts yet, why don't you <a ui-sref="sellingcarts.create">create one</a>?
+  </div>
+</section>
