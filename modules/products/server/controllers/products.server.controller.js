@@ -14,7 +14,7 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var product = new Product(req.body);
-  product.user = req.user;
+  product.seller = req.user;
 
   product.save(function(err) {
     if (err) {
@@ -36,7 +36,7 @@ exports.read = function(req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  product.isCurrentUserOwner = req.user && product.user && product.user._id.toString() === req.user._id.toString();
+  product.isCurrentUserOwner = req.user && product.seller && product.seller._id.toString() === req.user._id.toString();
 
   res.jsonp(product);
 };
@@ -81,7 +81,7 @@ exports.delete = function(req, res) {
  * List of Products
  */
 exports.list = function(req, res) {
-  Product.find().sort('-created').populate('user', 'displayName').exec(function(err, products) {
+  Product.find().sort('-created').populate('seller', 'displayName').exec(function(err, products) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -103,7 +103,7 @@ exports.productByID = function(req, res, next, id) {
     });
   }
 
-  Product.findById(id).populate('user', 'displayName').exec(function (err, product) {
+  Product.findById(id).populate('seller', 'displayName').exec(function (err, product) {
     if (err) {
       return next(err);
     } else if (!product) {

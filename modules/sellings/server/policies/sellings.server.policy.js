@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/sellings/:sellingId',
       permissions: '*'
+    }, {
+      resources: '/api/sellings/sellItem',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -29,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/sellings/:sellingId',
       permissions: ['get']
+    }, {
+      resources: '/api/sellings/sellItem',
+      permissions: ['put']
     }]
   }, {
     roles: ['guest'],
@@ -37,6 +43,40 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     }, {
       resources: '/api/sellings/:sellingId',
+      permissions: ['get']
+    }]
+  },
+  {
+    roles: ['admin'],
+    allows: [{
+      resources: '/sellings/api/sellings',
+      permissions: '*'
+    }, {
+      resources: '/sellings/api/sellings/:sellingId',
+      permissions: '*'
+    }, {
+      resources: '/sellings/api/sellings/sellItem',
+      permissions: '*'
+    }]
+  }, {
+    roles: ['user'],
+    allows: [{
+      resources: '/sellings/api/sellings',
+      permissions: ['get', 'post']
+    }, {
+      resources: '/sellings/api/sellings/:sellingId',
+      permissions: ['get']
+    }, {
+      resources: '/sellings/api/sellings/sellItem',
+      permissions: ['put']
+    }]
+  }, {
+    roles: ['guest'],
+    allows: [{
+      resources: '/sellings/api/sellings',
+      permissions: ['get']
+    }, {
+      resources: '/sellings/api/sellings/:sellingId',
       permissions: ['get']
     }]
   }]);

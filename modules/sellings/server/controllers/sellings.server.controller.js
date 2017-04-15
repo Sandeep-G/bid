@@ -6,8 +6,43 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Selling = mongoose.model('Selling'),
+  Product = mongoose.model('Product'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
+
+
+/**
+ * Add item to be sold
+ */
+exports.sellItem = function(req, res) {
+  var that = this;
+  var userId = req.user._id;
+
+  var query = {
+    'user': userId
+  };
+
+  var update = {
+    $addToSet: {
+      'products': req.body
+    }
+  };
+
+
+  Selling.findOneAndUpdate(query, update, {
+    upsert: true
+  }, function(err, doc) {
+    if (err) {
+      return res.status(500).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.send('Item added');
+    }
+  });
+
+};
+
 
 /**
  * Create a Selling
@@ -103,7 +138,7 @@ exports.sellingByID = function(req, res, next, id) {
     });
   }
 
-  Selling.findById(id).populate('user', 'displayName').exec(function (err, selling) {
+  Selling.findById(id).populate('user', 'displayName').exec(function(err, selling) {
     if (err) {
       return next(err);
     } else if (!selling) {

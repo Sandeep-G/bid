@@ -13,6 +13,7 @@
       sellingId: '@_id'
     }, {
       update: {
+        url: 'api/sellings',
         method: 'PUT'
       }
     });

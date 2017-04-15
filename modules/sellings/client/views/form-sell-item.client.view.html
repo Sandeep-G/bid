@@ -1,0 +1,69 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.product._id ? 'Edit Product' : 'New Product'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.productForm" class="form-horizontal" ng-submit="vm.save(vm.form.productForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.product.name" id="name" class="form-control" placeholder="name" required>
+          <div ng-messages="vm.form.productForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Product name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="imageURL">ImageURL</label>
+          <input name="imageURL" type="text" ng-model="vm.product.imageURL" id="imageURL" class="form-control" placeholder="image URL">
+          <div ng-messages="vm.form.productForm.imageURL.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Image URL is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="startBid">Starting bid</label>
+          <input name="startingBid" type="number" ng-model="vm.product.startingBid" id="startingBid" class="form-control" placeholder="starting bid" required>
+          <div ng-messages="vm.form.productForm.startingBid.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Starting Bid is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="bidIncrement">Bid increment</label>
+          <input name="bidIncrement" type="number" ng-model="vm.product.bidIncrement" id="bidIncrement" class="form-control" placeholder="bid increment" required>
+          <div ng-messages="vm.form.productForm.bidIncrement.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Bid Increment is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="quantity">Quantity</label>
+          <input name="quantity" type="number" ng-model="vm.product.quantity" id="quantity" class="form-control" placeholder="quantity" required>
+          <div ng-messages="vm.form.productForm.quantity.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Quantity is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="location">Location</label>
+          <input name="location" type="text" ng-model="vm.product.location" id="location" class="form-control" placeholder="location" required>
+          <div ng-messages="vm.form.productForm.location.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Location is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="category">Category</label>
+          <input name="category" type="text" ng-model="vm.product.category" id="category" class="form-control" placeholder="category" required>
+          <div ng-messages="vm.form.productForm.category.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Category is required.</p>
+
+          </div>
+        </div>
+
+        <br/>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.product._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

@@ -23,6 +23,19 @@
           pageTitle: 'Sellings List'
         }
       })
+      .state('sellings.sellItem', {
+        url: '/create',
+        templateUrl: 'modules/sellings/client/views/form-sell-item.client.view.html',
+        controller: 'SellingsController',
+        controllerAs: 'vm',
+        resolve: {
+          sellingResolve: newSelling
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Sell Item'
+        }
+      })
       .state('sellings.create', {
         url: '/create',
         templateUrl: 'modules/sellings/client/views/form-selling.client.view.html',

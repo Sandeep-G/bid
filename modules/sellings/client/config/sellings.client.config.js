@@ -16,6 +16,13 @@
       roles: ['*']
     });
 
+    // Add the dropdown create item
+    menuService.addSubMenuItem('topbar', 'sellings', {
+      title: 'Sell Item',
+      state: 'sellings.sellItem',
+      roles: ['user']
+    });
+
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'sellings', {
       title: 'List Sellings',
