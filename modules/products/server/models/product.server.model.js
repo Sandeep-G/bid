@@ -24,7 +24,15 @@ var ProductSchema = new Schema({
     type: String,
     default: 'modules/products/client/img/products/default.png'
   },
-  startBid: {
+  startsAt: {
+    type: Date,
+    default: Date.now
+  },
+  endsAt: {
+    type: Date,
+    required: 'Please specify end date for auction'
+  },
+  startingBid: {
     type: Number,
     required: 'Please enter starting bid'
   },
