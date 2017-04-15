@@ -17,6 +17,17 @@ module.exports = function(app) {
     .put(products.update)
     .delete(products.delete);
 
+  // TODO Resolve client side API call
+  // Temporary fix
+  app.route('/products/api/products').all(productsPolicy.isAllowed)
+    .get(products.list)
+    .post(products.create);
+
+  app.route('/products/api/products/:productId').all(productsPolicy.isAllowed)
+    .get(products.read)
+    .put(products.update)
+    .delete(products.delete);
+
   // Finish by binding the Product middleware
   app.param('productId', products.productByID);
 };

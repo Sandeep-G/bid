@@ -1,5 +1,5 @@
 // Products service used to communicate Products REST endpoints
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -13,7 +13,11 @@
       productId: '@_id'
     }, {
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        url: 'api/products'
+      }, save: {
+        method: 'POST',
+        url: 'api/products'
       }
     });
   }
