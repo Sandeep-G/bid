@@ -44,7 +44,10 @@ var ProductSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'Bid'
   },
-  bidHistory: [{type: Schema.ObjectId, ref: 'Bid'}],
+  bidHistory: [{
+    type: Schema.ObjectId,
+    ref: 'Bid'
+  }],
   quantity: {
     type: Number,
     required: 'Please enter number of items'
@@ -54,7 +57,7 @@ var ProductSchema = new Schema({
     default: '',
     required: 'Please specify the categories as comma seperated values',
     trim: true
-  }
+  },
   location: {
     type: String,
     trim: true
