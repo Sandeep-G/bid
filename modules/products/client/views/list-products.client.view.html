@@ -1,3 +1,75 @@
+<div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--MODIFIED CODE
+<section>
+  <div class="page-header">
+    <h1>Products</h1>
+  </div>
+
+<div class="card-deck">
+  <div class="card">
+  <a ng-repeat="product in vm.products"
+       ui-sref="products.view({ productId: product._id })"
+        >
+
+
+        <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-block">
+             <h4 class="card-title" ng-bind="product.name"></h4>
+                <p class="card-text">
+                  Posted on
+                  <span ng-bind="product.created | date:'mediumDate'"></span>
+                  by
+                  <span ng-if="product.user" ng-bind="product.user.displayName"></span>
+                  <span ng-if="!product.user">Deleted User</span>
+                </p>
+          </div>
+          </a>
+      </div>
+
+</div>
+
+<div class="alert alert-warning text-center" ng-if="vm.products.$resolved && !vm.products.length">
+    No Products yet, why don't you <a ui-sref="products.create">create one</a>?
+  </div>
+</section>-->
+
+
+<!--ORIGINAL CODE
 <section>
   <div class="page-header">
     <h1>Products</h1>
@@ -5,7 +77,8 @@
   <div class="list-group">
     <a ng-repeat="product in vm.products"
        ui-sref="products.view({ productId: product._id })"
-       class="list-group-item">
+        class="list-group-item">
+
       <small class="list-group-item-text">
         Posted on
         <span ng-bind="product.created | date:'mediumDate'"></span>
@@ -20,3 +93,4 @@
     No Products yet, why don't you <a ui-sref="products.create">create one</a>?
   </div>
 </section>
+-->

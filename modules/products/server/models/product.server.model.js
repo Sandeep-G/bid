@@ -41,23 +41,9 @@ var ProductSchema = new Schema({
     type: Number,
     required: 'Please enter number of items'
   },
-  category: {
-    type: String,
-    default: '',
-    required: 'Please specify the categories as comma seperated values',
-    trim: true
-  }
   location: {
     type: String,
     trim: true
-  },
-  expired: {
-    type: Boolean,
-    default: false
-  },
-  deleted: {
-    type: Boolean,
-    default: false
   }
 });
 
