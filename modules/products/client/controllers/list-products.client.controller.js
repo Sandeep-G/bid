@@ -11,5 +11,6 @@
     var vm = this;
 
     vm.products = ProductsService.query();
+    console.log(vm.products);
   }
 }());
