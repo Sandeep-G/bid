@@ -153,6 +153,12 @@ exports.list = function(req, res) {
       path: 'bidder',
       select: 'displayName'
     }
+  }, {
+    path: 'bidHistory',
+    populate: {
+      path: 'bidder',
+      select: 'displayName'
+    }
   }]).exec(function(err, products) {
     if (err) {
       return res.status(400).send({
