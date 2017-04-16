@@ -66,7 +66,7 @@ exports.listActiveItems = function(req, res) {
       $gt: new Date()
     }
   }).sort('-created').populate([{
-    path: 'currentBid',
+    path: 'seller',
     select: 'displayName'
   }, {
     path: 'currentBid'

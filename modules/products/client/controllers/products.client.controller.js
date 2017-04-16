@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   // Products controller
@@ -8,7 +8,7 @@
 
   ProductsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'productResolve'];
 
-  function ProductsController ($scope, $state, $window, Authentication, product) {
+  function ProductsController($scope, $state, $window, Authentication, product) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,12 +17,20 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.bidItem = bidItem;
 
     // Remove existing Product
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.product.$remove($state.go('products.list'));
       }
+    }
+
+    function bidItem() {
+      console.log('Bidding item');
+      vm.product.$bid({
+        amount: 10
+      });
     }
 
     // Save Product

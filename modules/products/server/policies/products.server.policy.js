@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/products/:productId',
       permissions: '*'
+    }, {
+      resources: '/api/products/:productId/bid',
+      permissions: ['put']
     }]
   }, {
     roles: ['user'],
@@ -29,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/products/:productId',
       permissions: ['get']
+    }, {
+      resources: '/api/products/:productId/bid',
+      permissions: ['put']
     }]
   }, {
     roles: ['guest'],
@@ -37,34 +43,6 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     }, {
       resources: '/api/products/:productId',
-      permissions: ['get']
-    }]
-  },
-  {
-    roles: ['admin'],
-    allows: [{
-      resources: '/products/api/products',
-      permissions: '*'
-    }, {
-      resources: '/products/api/products/:productId',
-      permissions: '*'
-    }]
-  }, {
-    roles: ['user'],
-    allows: [{
-      resources: '/products/api/products',
-      permissions: ['get', 'post']
-    }, {
-      resources: '/products/api/products/:productId',
-      permissions: ['get']
-    }]
-  }, {
-    roles: ['guest'],
-    allows: [{
-      resources: '/products/api/products',
-      permissions: ['get']
-    }, {
-      resources: '/products/api/products/:productId',
       permissions: ['get']
     }]
   }]);

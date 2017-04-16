@@ -10,19 +10,15 @@ var mongoose = require('mongoose'),
  * Buying Schema
  */
 var BuyingSchema = new Schema({
-  name: {
-    type: String,
-    default: '',
-    required: 'Please fill Buying name',
-    trim: true
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  },
   user: {
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: 'Invalid User ID',
+    unique: true
+  },
+  products: {
+    type: [{ type: Schema.ObjectId, ref: 'Product', unique: true }],
+    default: []
   }
 });
 

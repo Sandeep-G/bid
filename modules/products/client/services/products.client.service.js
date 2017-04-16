@@ -18,6 +18,9 @@
       }, save: {
         method: 'POST',
         url: '/api/products'
+      }, bid: {
+        method: 'PUT',
+        url: '/api/products/:productId/bid'
       }
     });
   }
