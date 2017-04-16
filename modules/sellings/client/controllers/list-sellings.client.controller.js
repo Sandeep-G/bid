@@ -1,15 +1,21 @@
-(function () {
+(function() {
   'use strict';
 
   angular
     .module('sellings')
     .controller('SellingsListController', SellingsListController);
 
-  SellingsListController.$inject = ['SellingsService'];
+  SellingsListController.$inject = ['$scope', '$state', '$window', 'SellingsService'];
 
-  function SellingsListController(SellingsService) {
+  function SellingsListController($scope, $state, $window, SellingsService) {
     var vm = this;
+    var sellingsService = new SellingsService();
 
-    vm.sellings = SellingsService.query();
+    if ($state.current.url === '/activeItems') {
+      sellingsService.$listActiveItems().$promise.then(function(selling) {
+        vm.selling;
+      });
+    }
   }
+
 }());

@@ -19,6 +19,10 @@
       save: {
         url: '/api/sellings/sellItem',
         method: 'PUT'
+      },
+      listActiveItems: {
+        url: '/api/sellings/listActiveItems',
+        method: 'GET'
       }
     });
   }

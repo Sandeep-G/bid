@@ -14,13 +14,13 @@
         url: '/sellings',
         template: '<ui-view/>'
       })
-      .state('sellings.list', {
-        url: '',
+      .state('sellings.listActiveItems', {
+        url: '/activeItems',
         templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
         controller: 'SellingsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Sellings List'
+          pageTitle: 'Active Items'
         }
       })
       .state('sellings.sellItem', {

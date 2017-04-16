@@ -23,5 +23,12 @@
       roles: ['user']
     });
 
+    // Add the dropdown create item
+    menuService.addSubMenuItem('topbar', 'sellings', {
+      title: 'Active Items',
+      state: 'sellings.listActiveItems',
+      roles: ['user']
+    });
+
   }
 }());

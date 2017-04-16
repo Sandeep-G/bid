@@ -56,7 +56,7 @@
         </div>
         <div class="form-group" show-errors>
           <label class="control-label" for="endsAt">End Date</label>
-          <md-datepicker name="endsAt" type="date" ng-model="vm.selling.endsAt" id="endsAt" class="form-control" md-placeholder="End Date" md-open-on-focus required/>
+          <input name="endsAt" type="date" ng-model="vm.selling.endsAt" id="endsAt" class="form-control" placeholder="End Date" required/>
           <div ng-messages="vm.form.sellingForm.category.$error" role="alert">
             <p class="help-block error-text" ng-message="required">End Date is required.</p>
           </div>
