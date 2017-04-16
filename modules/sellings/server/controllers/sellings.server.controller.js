@@ -7,6 +7,8 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Selling = mongoose.model('Selling'),
   Product = mongoose.model('Product'),
+  User = mongoose.model('User'),
+  Bid = mongoose.model('Bid'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -50,6 +52,111 @@ exports.sellItem = function(req, res) {
     }
   });
 
+};
+
+/**
+ * List of Active Items on auction for current user
+ */
+exports.listActiveItems = function(req, res) {
+  Product.find({
+    'seller': req.user,
+    'sold': false,
+    'canceled': false,
+    'endsAt': {
+      $gt: new Date()
+    }
+  }).sort('-created').populate([{
+    path: 'currentBid',
+    select: 'displayName'
+  }, {
+    path: 'currentBid'
+  }]).exec(function(err, sellings) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(sellings);
+    }
+  });
+};
+
+/**
+ * List of Sold Items on auction for current user
+ */
+exports.listSoldItems = function(req, res) {
+  Product.find({
+    'seller': req.user,
+    'sold': true,
+    'canceled': false,
+    'endsAt': {
+      $lt: new Date()
+    }
+  }).sort('-created').populate([{
+    path: 'currentBid',
+    select: 'displayName'
+  }, {
+    path: 'currentBid'
+  }]).exec(function(err, sellings) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(sellings);
+    }
+  });
+};
+
+/**
+ * List of Sold Items on auction for current user
+ */
+exports.listUnsoldItems = function(req, res) {
+  Product.find({
+    'seller': req.user,
+    'sold': false,
+    'canceled': false,
+    'endsAt': {
+      $lt: new Date()
+    }
+  }).sort('-created').populate([{
+    path: 'currentBid',
+    select: 'displayName'
+  }, {
+    path: 'currentBid'
+  }]).exec(function(err, sellings) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(sellings);
+    }
+  });
+};
+
+/**
+ * List of Sold Items on auction for current user
+ */
+exports.listCanceledItems = function(req, res) {
+  Product.find({
+    'seller': req.user,
+    'sold': false,
+    'canceled': true
+  }).sort('-created').populate([{
+    path: 'currentBid',
+    select: 'displayName'
+  }, {
+    path: 'currentBid'
+  }]).exec(function(err, sellings) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(sellings);
+    }
+  });
 };
 
 /**

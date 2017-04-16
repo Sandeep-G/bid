@@ -11,6 +11,18 @@ module.exports = function(app) {
   app.route('/api/sellings/sellItem').all(sellingsPolicy.isAllowed)
     .put(sellings.sellItem);
 
+  app.route('/api/sellings/listActiveItems').all(sellingsPolicy.isAllowed)
+    .get(sellings.listActiveItems);
+
+  app.route('/api/sellings/listSoldItems').all(sellingsPolicy.isAllowed)
+    .get(sellings.listSoldItems);
+
+  app.route('/api/sellings/listUnsoldItems').all(sellingsPolicy.isAllowed)
+    .get(sellings.listUnsoldItems);
+
+  app.route('/api/sellings/listCanceledItems').all(sellingsPolicy.isAllowed)
+    .get(sellings.listCanceledItems);
+
   // TODO Resolve client side API call
   // Temporary fix
   app.route('/sellings/api/sellings/sellItem').all(sellingsPolicy.isAllowed)

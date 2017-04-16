@@ -13,36 +13,29 @@ acl = new acl(new acl.memoryBackend());
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
-    roles: ['admin'],
+    roles: ['admin', 'user'],
     allows: [{
       resources: '/api/sellings/sellItem',
       permissions: '*'
-    }]
-  }, {
-    roles: ['user'],
-    allows: [{
-      resources: '/api/sellings/sellItem',
-      permissions: ['put']
-    }]
-  }, {
-    roles: ['guest'],
-    allows: []
-  },
-  {
-    roles: ['admin'],
-    allows: [{
-      resources: '/sellings/api/sellings/sellItem',
+    }, {
+      resources: '/api/sellings/listActiveItems',
+      permissions: '*'
+    }, {
+      resources: '/api/sellings/listSoldItems',
+      permissions: '*'
+    }, {
+      resources: '/api/sellings/listUnsoldItems',
+      permissions: '*'
+    }, {
+      resources: '/api/sellings/listCanceledItems',
       permissions: '*'
     }]
   }, {
-    roles: ['user'],
-    allows: [{
-      resources: '/sellings/api/sellings/sellItem',
-      permissions: ['put']
-    }]
-  }, {
     roles: ['guest'],
-    allows: []
+    allows: [{
+      resources: '*',
+      permissions: '*'
+    }]
   }]);
 };
 
