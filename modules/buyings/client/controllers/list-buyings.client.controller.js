@@ -10,6 +10,6 @@
   function BuyingsListController(BuyingsService) {
     var vm = this;
 
-    vm.buyings = BuyingsService.query();
+    vm.buyings = BuyingsService.listWinning();
   }
 }());

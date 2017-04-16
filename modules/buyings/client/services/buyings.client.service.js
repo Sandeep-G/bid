@@ -1,5 +1,5 @@
 // Buyings service used to communicate Buyings REST endpoints
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -9,11 +9,27 @@
   BuyingsService.$inject = ['$resource'];
 
   function BuyingsService($resource) {
-    return $resource('api/buyings/:buyingId', {
+    return $resource('/api/buyings/:buyingId', {
       buyingId: '@_id'
     }, {
       update: {
         method: 'PUT'
+      },
+      listWinning: {
+        url: '/api/buyings/listWinning',
+        method: 'GET'
+      },
+      listLosing: {
+        url: '/api/buyings/listLosing',
+        method: 'GET'
+      },
+      listWon: {
+        url: '/api/buyings/listWon',
+        method: 'GET'
+      },
+      listPurchased: {
+        url: '/api/buyings/listPurchased',
+        method: 'GET'
       }
     });
   }

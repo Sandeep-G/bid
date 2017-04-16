@@ -74,7 +74,6 @@ exports.bid = function(req, res) {
     amount: req.query.amount
   });
 
-  console.log('PRODUCT ::: ' + product);
   if (product.currentBid === null || typeof product.currentBid === 'undefined' || product.currentBid < newBid.amount) {
     newBid.save(function(err) {
       if (err) {

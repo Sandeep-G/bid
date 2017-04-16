@@ -20,6 +20,18 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/buyings/:buyingId',
       permissions: '*'
+    }, {
+      resources: '/api/buyings/listWinning',
+      permissions: '*'
+    }, {
+      resources: '/api/buyings/listLosing',
+      permissions: '*'
+    }, {
+      resources: '/api/buyings/listWon',
+      permissions: '*'
+    }, {
+      resources: '/api/buyings/listPurchased',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -29,16 +41,22 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/buyings/:buyingId',
       permissions: ['get']
+    }, {
+      resources: '/api/buyings/listWinning',
+      permissions: ['get']
+    }, {
+      resources: '/api/buyings/listLosing',
+      permissions: ['get']
+    }, {
+      resources: '/api/buyings/listWon',
+      permissions: ['get']
+    }, {
+      resources: '/api/buyings/listPurchased',
+      permissions: ['get']
     }]
   }, {
     roles: ['guest'],
-    allows: [{
-      resources: '/api/buyings',
-      permissions: ['get']
-    }, {
-      resources: '/api/buyings/:buyingId',
-      permissions: ['get']
-    }]
+    allows: []
   }]);
 };
 

@@ -12,6 +12,18 @@ module.exports = function(app) {
     .get(buyings.list)
     .post(buyings.create);
 
+  app.route('/api/buyings/listWinning').all(buyingsPolicy.isAllowed)
+    .get(buyings.listWinning);
+
+  app.route('/api/buyings/listLosing').all(buyingsPolicy.isAllowed)
+    .get(buyings.listLosing);
+
+  app.route('/api/buyings/listWon').all(buyingsPolicy.isAllowed)
+    .get(buyings.listWon);
+
+  app.route('/api/buyings/listPurchased').all(buyingsPolicy.isAllowed)
+    .get(buyings.listPurchased);
+
   app.route('/api/buyings/:buyingId').all(buyingsPolicy.isAllowed)
     .get(buyings.read)
     .put(buyings.update)
