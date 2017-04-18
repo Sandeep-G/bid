@@ -1,14 +1,38 @@
 <div class="container" ng-controller="HeaderController as vm">
   <div class="navbar-header">
-    <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a ui-sref="home" class="navbar-brand">Online Auction</a>
+    <div class="nav-left">
+      <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a ui-sref="home" class="navbar-brand">Online Auction</a>
+    </div>
+    <div class="nav-right">
+    </div>
+    <div class="nav-fill">
+      <div id="nav-search">
+        <form name="site-search">
+          <div class="nav-left btn-group form-group">
+            <select class="selectpicker">
+              <option>All</option>
+              <option>Electronics</option>
+            </select>
+          </div>
+          <div class="nav-right">
+            <a class="btn btn-primary">
+              <i class="glyphicon glyphicon-search"></i>
+            </a>
+          </div>
+          <div class="nav-fill">
+            <input type="text" id="twotabsearchtextbox" value="" name="field-keywords" autocomplete="off" placeholder="" class="nav-input" tabindex="19">
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  <nav class="navbar-collapse navbar-inverse" uib-collapse="!vm.isCollapsed" role="navigation">
+  <nav class="nav-main navbar-collapse navbar-inverse" uib-collapse="!vm.isCollapsed" role="navigation">
     <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
       <li ui-sref-active="active">
         <a ui-sref="authentication.signup">Sign Up</a>
