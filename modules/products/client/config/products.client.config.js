@@ -9,10 +9,10 @@
 
   function menuConfig(menuService) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
-      title: 'Products',
-      state: 'products.list',
-      roles: ['*']
-    });
+  //   menuService.addMenuItem('topbar', {
+  //     title: 'Products',
+  //     state: 'products.list',
+  //     roles: ['*']
+  //   });
   }
 }());
