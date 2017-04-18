@@ -41,3 +41,34 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+.nav-main {
+  clear: both;
+}
+
+.nav-fill {
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-left {
+  position: relative;
+  float: left;
+  width: auto;
+  display: inline-block;
+}
+
+.nav-right {
+  position: relative;
+  float: right;
+  width: auto;
+  display: inline-block;
+}
+
+.nav-search-field {
+  position: relative;
+  height: 35px;
+  background: #fff;
+  border-top: 1px solid #bdbdbd;
+  border-bottom: 1px solid #cdcdcd;
+}
