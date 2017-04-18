@@ -251,7 +251,57 @@ exports.delete = function(req, res) {
  * List of Products
  */
 exports.list = function(req, res) {
-  Product.find().sort('-created').populate([{
+  getProductList({}, res);
+};
+
+/**
+ * List of Filtered Products
+ */
+exports.search = function(req, res) {
+  getProductList(req.body, res);
+};
+
+function getProductList(params, res) {
+  var category = params.category || 'all';
+  var keywords = params.keywords || [];
+
+  var andQuery = [{
+    endsAt: {
+      $gt: new Date()
+    }
+  }, {
+    canceled: false
+  }];
+
+  if (category.toLowerCase() !== 'all') {
+    andQuery.push({
+      category: {
+        $regex: category,
+        $options: 'i'
+      }
+    });
+  }
+
+  if (keywords.length !== 0) {
+    var orQuery = [];
+    for (var i = 0; i < keywords.length; i++) {
+      orQuery.push({
+        name: {
+          $regex: keywords[i],
+          $options: 'i'
+        }
+      });
+    }
+    andQuery.push({
+      $or: orQuery
+    });
+  }
+
+  var query = {
+    $and: andQuery
+  };
+
+  Product.find(query).sort('-created').populate([{
     path: 'seller',
     select: 'displayName'
   }, {
@@ -275,7 +325,7 @@ exports.list = function(req, res) {
       res.jsonp(products);
     }
   });
-};
+}
 
 /**
  * Product middleware

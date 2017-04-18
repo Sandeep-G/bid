@@ -1,5 +1,5 @@
 .content {
-  margin-top: 70px;
+  margin-top: 30px;
 }
 .undecorated-link:hover {
   text-decoration: none;
@@ -49,6 +49,7 @@ a:hover .header-profile-image {
   width: auto;
   overflow: hidden;
   white-space: nowrap;
+  display: block;
 }
 
 .nav-left {
@@ -65,10 +66,22 @@ a:hover .header-profile-image {
   display: inline-block;
 }
 
+#nav-search {
+  margin-top: 7px;
+}
+
 .nav-search-field {
   position: relative;
   height: 35px;
   background: #fff;
   border-top: 1px solid #bdbdbd;
   border-bottom: 1px solid #cdcdcd;
+}
+
+.oa-navbar {
+  width: 100%;
+}
+
+#searchbox {
+  min-width: 150px;
 }

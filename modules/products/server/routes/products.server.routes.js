@@ -12,6 +12,9 @@ module.exports = function(app) {
     .get(products.list)
     .post(products.create);
 
+  app.route('/api/products/search').all(productsPolicy.isAllowed)
+    .post(products.create);
+
   app.route('/api/products/:productId').all(productsPolicy.isAllowed)
     .get(products.read)
     .put(products.update)

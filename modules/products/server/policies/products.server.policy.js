@@ -11,11 +11,14 @@ acl = new acl(new acl.memoryBackend());
 /**
  * Invoke Products Permissions
  */
-exports.invokeRolesPolicies = function () {
+exports.invokeRolesPolicies = function() {
   acl.allow([{
     roles: ['admin'],
     allows: [{
       resources: '/api/products',
+      permissions: '*'
+    }, {
+      resources: '/api/products/search',
       permissions: '*'
     }, {
       resources: '/api/products/:productId',
@@ -30,6 +33,9 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/products',
       permissions: ['get', 'post']
     }, {
+      resources: '/api/products/search',
+      permissions: ['post']
+    }, {
       resources: '/api/products/:productId',
       permissions: ['get']
     }, {
@@ -42,6 +48,9 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/products',
       permissions: ['get']
     }, {
+      resources: '/api/products/search',
+      permissions: ['post']
+    }, {
       resources: '/api/products/:productId',
       permissions: ['get']
     }]
@@ -51,7 +60,7 @@ exports.invokeRolesPolicies = function () {
 /**
  * Check If Products Policy Allows
  */
-exports.isAllowed = function (req, res, next) {
+exports.isAllowed = function(req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
   // If an Product is being processed and the current user created it then allow any manipulation
@@ -60,7 +69,7 @@ exports.isAllowed = function (req, res, next) {
   }
 
   // Check for user roles
-  acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {
+  acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function(err, isAllowed) {
     if (err) {
       // An authorization error occurred
       return res.status(500).send('Unexpected authorization error');
