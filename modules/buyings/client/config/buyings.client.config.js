@@ -10,23 +10,38 @@
   function menuConfig(menuService) {
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
-      title: 'Buyings',
+      title: 'Buying',
       state: 'buyings',
       type: 'dropdown',
       roles: ['*']
     });
 
-    // Add the dropdown list item
+    // Add the dropdown list winning bids
     menuService.addSubMenuItem('topbar', 'buyings', {
-      title: 'List Buyings',
-      state: 'buyings.list'
+      title: 'Winning',
+      state: 'buyings.listWinningBids',
+      roles: ['user', 'admin']
     });
 
-    // Add the dropdown create item
+    // Add the dropdown list losing bids
     menuService.addSubMenuItem('topbar', 'buyings', {
-      title: 'Create Buying',
-      state: 'buyings.create',
-      roles: ['user']
+      title: 'Losing',
+      state: 'buyings.listLosingBids',
+      roles: ['user', 'admin']
+    });
+
+    // Add the dropdown list won bids
+    menuService.addSubMenuItem('topbar', 'buyings', {
+      title: 'Won',
+      state: 'buyings.listWonBids',
+      roles: ['user', 'admin']
+    });
+
+    // Add the dropdown list purchase History
+    menuService.addSubMenuItem('topbar', 'buyings', {
+      title: 'Purchase History',
+      state: 'buyings.purchaseHistory',
+      roles: ['user', 'admin']
     });
   }
 }());

@@ -14,6 +14,42 @@
         url: '/buyings',
         template: '<ui-view/>'
       })
+      .state('buyings.listWinningBids', {
+        url: '/listWinning',
+        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        controller: 'BuyingsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Winning Bids'
+        }
+      })
+      .state('buyings.listLosingBids', {
+        url: '/listLosing',
+        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        controller: 'BuyingsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Losing Bids'
+        }
+      })
+      .state('buyings.listWonBids', {
+        url: '/listWon',
+        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        controller: 'BuyingsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Won Bids'
+        }
+      })
+      .state('buyings.purchaseHistory', {
+        url: '/purchaseHistory',
+        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        controller: 'BuyingsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Purchase History'
+        }
+      })
       .state('buyings.list', {
         url: '',
         templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',

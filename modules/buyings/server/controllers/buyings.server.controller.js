@@ -119,52 +119,6 @@ exports.listWinning = function(req, res) {
 /**
  * List of Losing Bids by current user
  */
-exports.listWinning = function(req, res) {
-  console.log('LIST WINNING');
-  Buying.findOne({
-    'user': req.user
-  }).sort('-created').populate({
-    path: 'products',
-    populate: [{
-      path: 'seller',
-      select: 'displayName'
-    }, {
-      path: 'currentBid',
-      populate: {
-        path: 'bidder',
-        select: 'displayName'
-      }
-    }]
-  }).exec(function(err, buying) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      var products = [];
-      for (var i = 0, len = buying.products.length; i < len; i++) {
-        var product = buying.products[i];
-        console.log('PRODUCT:::');
-        console.log('End date : ' + product.endsAt + ' :::: ' + typeof product.endsAt);
-        console.log('Bidder : ' + JSON.stringify(product.currentBid));
-        console.log('USER : ' + JSON.stringify(req.user));
-        console.log('Validation : ' + req.user && product.currentBid.bidder && req.user._id.toString() === product.currentBid.bidder._id.toString());
-        if (product.sold || product.canceled)
-          continue;
-        if (product.endsAt < new Date())
-          continue;
-        if (req.user && product.currentBid.bidder && req.user._id.toString() === product.currentBid.bidder._id.toString())
-          products.push(product);
-      }
-      res.jsonp(products);
-    }
-  });
-};
-
-
-/**
- * List of Losing Bids by current user
- */
 exports.listLosing = function(req, res) {
   Buying.findOne({
     'user': req.user
