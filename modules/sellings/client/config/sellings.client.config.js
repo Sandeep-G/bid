@@ -23,11 +23,32 @@
       roles: ['user']
     });
 
-    // Add the dropdown create item
+    // Add the dropdown list active items
     menuService.addSubMenuItem('topbar', 'sellings', {
       title: 'Active Items',
       state: 'sellings.listActiveItems',
-      roles: ['user']
+      roles: ['user', 'admin']
+    });
+
+    // Add the dropdown sold items
+    menuService.addSubMenuItem('topbar', 'sellings', {
+      title: 'Sold Items',
+      state: 'sellings.listSoldItems',
+      roles: ['user', 'admin']
+    });
+
+    // Add the dropdown unsold items
+    menuService.addSubMenuItem('topbar', 'sellings', {
+      title: 'Unsold Items',
+      state: 'sellings.listUnsoldItems',
+      roles: ['user', 'admin']
+    });
+
+    // Add the dropdown create item
+    menuService.addSubMenuItem('topbar', 'sellings', {
+      title: 'Canceled Items',
+      state: 'sellings.listCanceledItems',
+      roles: ['user', 'admin']
     });
 
   }

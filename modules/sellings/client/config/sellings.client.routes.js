@@ -23,6 +23,33 @@
           pageTitle: 'Active Items'
         }
       })
+      .state('sellings.listSoldItems', {
+        url: '/soldItems',
+        templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
+        controller: 'SellingsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Sold Items'
+        }
+      })
+      .state('sellings.listUnsoldItems', {
+        url: '/unsoldItems',
+        templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
+        controller: 'SellingsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Unsold Items'
+        }
+      })
+      .state('sellings.listCanceledItems', {
+        url: '/canceledItems',
+        templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
+        controller: 'SellingsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Canceled Items'
+        }
+      })
       .state('sellings.sellItem', {
         url: '/sellItem',
         templateUrl: 'modules/sellings/client/views/form-sell-item.client.view.html',

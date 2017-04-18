@@ -63,13 +63,17 @@ exports.listActiveItems = function(req, res) {
     'sold': false,
     'canceled': false,
     'endsAt': {
-      $gt: new Date()
+      $gte: new Date()
     }
   }).sort('-created').populate([{
     path: 'seller',
     select: 'displayName'
   }, {
-    path: 'currentBid'
+    path: 'currentBid',
+    populate: {
+      path: 'bidder',
+      select: 'displayName'
+    }
   }]).exec(function(err, sellings) {
     if (err) {
       return res.status(400).send({
@@ -94,9 +98,10 @@ exports.listSoldItems = function(req, res) {
     }
   }).sort('-created').populate([{
     path: 'currentBid',
-    select: 'displayName'
-  }, {
-    path: 'currentBid'
+    populate: {
+      path: 'bidder',
+      select: 'displayName'
+    }
   }]).exec(function(err, sellings) {
     if (err) {
       return res.status(400).send({
@@ -121,9 +126,10 @@ exports.listUnsoldItems = function(req, res) {
     }
   }).sort('-created').populate([{
     path: 'currentBid',
-    select: 'displayName'
-  }, {
-    path: 'currentBid'
+    populate: {
+      path: 'bidder',
+      select: 'displayName'
+    }
   }]).exec(function(err, sellings) {
     if (err) {
       return res.status(400).send({
@@ -141,13 +147,13 @@ exports.listUnsoldItems = function(req, res) {
 exports.listCanceledItems = function(req, res) {
   Product.find({
     'seller': req.user,
-    'sold': false,
     'canceled': true
   }).sort('-created').populate([{
     path: 'currentBid',
-    select: 'displayName'
-  }, {
-    path: 'currentBid'
+    populate: {
+      path: 'bidder',
+      select: 'displayName'
+    }
   }]).exec(function(err, sellings) {
     if (err) {
       return res.status(400).send({

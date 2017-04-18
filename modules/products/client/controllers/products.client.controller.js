@@ -19,13 +19,16 @@
     vm.remove = remove;
     vm.save = save;
 
-    vm.product.name = 'Test';
-    vm.product.startingBid = 30;
-    vm.product.bidIncrement = 1;
-    vm.product.quantity = 1;
-    vm.product.category = 'category';
-    vm.product.location = 'Dallas';
-    vm.product.endsAt = new Date();
+    // TODO Remove auto fill
+    if (vm.product === undefined || vm.product === null || vm.product.name === undefined || vm.product.name === '') {
+      vm.product.name = 'Test';
+      vm.product.startingBid = 30;
+      vm.product.bidIncrement = 1;
+      vm.product.quantity = 1;
+      vm.product.category = 'category';
+      vm.product.location = 'Dallas';
+      vm.product.endsAt = new Date();
+    }
 
     vm.bidItem = bidItem;
     if (vm.product.currentBid === undefined || vm.product.currentBid === null)

@@ -22,6 +22,22 @@
       },
       listActiveItems: {
         url: '/api/sellings/listActiveItems',
+        isArray: true,
+        method: 'GET'
+      },
+      listSoldItems: {
+        url: '/api/sellings/listSoldItems',
+        isArray: true,
+        method: 'GET'
+      },
+      listUnsoldItems: {
+        url: '/api/sellings/listUnsoldItems',
+        isArray: true,
+        method: 'GET'
+      },
+      listCanceledItems: {
+        url: '/api/sellings/listCanceledItems',
+        isArray: true,
         method: 'GET'
       }
     });

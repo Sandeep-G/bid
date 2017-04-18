@@ -58,6 +58,7 @@
           productResolve: getProduct
         },
         data: {
+          roles: ['user', 'admin', 'guest'],
           pageTitle: 'Product {{ productResolve.name }}'
         }
       });
@@ -76,4 +77,5 @@
   function newProduct(ProductsService) {
     return new ProductsService();
   }
+  console.log('PRODUCTS ROUTE CONFIG');
 }());

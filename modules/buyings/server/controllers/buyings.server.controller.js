@@ -91,7 +91,8 @@ exports.listWinning = function(req, res) {
     }, {
       path: 'currentBid',
       populate: {
-        path: 'bidder'
+        path: 'bidder',
+        select: 'displayName'
       }
     }]
   }).exec(function(err, buying) {

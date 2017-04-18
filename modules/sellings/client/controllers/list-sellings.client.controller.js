@@ -12,9 +12,13 @@
     var sellingsService = new SellingsService();
 
     if ($state.current.url === '/activeItems') {
-      sellingsService.$listActiveItems().$promise.then(function(selling) {
-        vm.selling;
-      });
+      vm.products = SellingsService.listActiveItems();
+    } else if ($state.current.url === '/soldItems') {
+      vm.products = SellingsService.listSoldItems();
+    } else if ($state.current.url === '/unsoldItems') {
+      vm.products = SellingsService.listUnsoldItems();
+    } else if ($state.current.url === '/listCanceledItems') {
+      vm.products = SellingsService.listCanceledItems();
     }
   }
 

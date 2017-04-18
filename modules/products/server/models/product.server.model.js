@@ -66,6 +66,10 @@ var ProductSchema = new Schema({
     type: Boolean,
     default: false
   },
+  paid: {
+    type: Boolean,
+    default: false
+  },
   canceled: {
     type: Boolean,
     default: false
