@@ -181,7 +181,7 @@ exports.bid = function(req, res) {
     amount: req.query.amount
   });
 
-  if (product.currentBid === null || typeof product.currentBid === 'undefined' || product.currentBid < newBid.amount) {
+  if (product.currentBid === null || typeof product.currentBid === 'undefined' || product.currentBid.amount < newBid.amount) {
     newBid.save(function(err) {
       if (err) {
         return res.status(400).send({
