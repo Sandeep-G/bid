@@ -18,6 +18,11 @@
     vm.remove = remove;
     vm.save = save;
     vm.bidItem = bidItem;
+    if(vm.product.currentBid === undefined || vm.product.currentBid === null)
+      vm.minBid = vm.product.startingBid;
+    else
+      vm.minBid = vm.product.currentBid.amount + vm.product.bidIncrement;
+    vm.newBid = vm.minBid;
 
     // Remove existing Product
     function remove() {
@@ -29,7 +34,7 @@
     function bidItem() {
       console.log('Bidding item');
       vm.product.$bid({
-        amount: 10
+        amount: vm.newBid
       });
     }
 

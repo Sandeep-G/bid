@@ -100,7 +100,7 @@ exports.bid = function(req, res) {
   });
 
   var query = {
-    'user': req.user
+    'user': req.user  
   };
 
   var update = {

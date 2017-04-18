@@ -50,3 +50,12 @@
 .card-inverse .btn {
     border: 1px solid rgba(0, 0, 0, .05);
 }
+
+#productdetails{
+  border: 1px solid rgba(0,0,0,.2);
+  background-color: rgba(0,0,0,.05);
+}
+
+.bluecolor{
+  color: rgb(49, 109, 206);
+}
