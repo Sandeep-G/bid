@@ -19,7 +19,7 @@
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'sellings', {
       title: 'Sell Item',
-      state: 'sellings.sellItem',
+      state: 'products.create',
       roles: ['user']
     });
 

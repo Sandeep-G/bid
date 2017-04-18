@@ -4,8 +4,12 @@
  * Module dependencies.
  */
 var path = require('path'),
+  fs = require('fs'),
+  config = require(path.resolve('./config/config')),
+  multer = require('multer'),
   mongoose = require('mongoose'),
   Product = mongoose.model('Product'),
+  Selling = mongoose.model('Selling'),
   Bid = mongoose.model('Bid'),
   Buying = mongoose.model('Buying'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
@@ -23,11 +27,114 @@ exports.create = function(req, res) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.jsonp(product);
     }
   });
+  console.log('PRODUCT SAVED');
+  addToSelling(product, req.user, res);
+  console.log('PRODUCT ADDED TO SELLING');
+  // changeProductImage(product, req, res);
+  // console.log('PRODUCT IMAGE UPDATED');
+  // console.log('PRODUCT::::');
+  // console.log(product);
+  res.jsonp(product);
 };
+
+function changeProductImage(product, req, res) {
+  var user = req.user;
+  var existingImageUrl;
+
+  // Filtering to upload only images
+  var multerConfig = config.uploads.product.image;
+  multerConfig.fileFilter = require(path.resolve('./config/lib/multer')).imageFileFilter;
+  var upload = multer(multerConfig).single('newProductImage');
+
+  if (product) {
+    existingImageUrl = product.imageURL;
+    uploadImage()
+      .then(updateProduct)
+      .then(deleteOldImage)
+      .catch(function(err) {
+        console.log('ERROR CAUGHT DURING IMAGE UPLOAD');
+        console.log(err);
+        res.status(422).send(err);
+      });
+  } else {
+    console.log('USER NOT SIGNED IN DURING IMAGE UPLOAD');
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
+
+  function uploadImage() {
+    return new Promise(function(resolve, reject) {
+      upload(req, res, function(uploadError) {
+        if (uploadError) {
+          reject(errorHandler.getErrorMessage(uploadError));
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+
+  function updateProduct() {
+    return new Promise(function(resolve, reject) {
+      console.log('REQUEST');
+      console.log(req);
+      console.log('REQUEST.FILE');
+      console.log(req.file);
+      product.imageURL = config.uploads.product.image.dest + req.file.filename;
+      // product.save(function(err, theuser) {
+      //   if (err) {
+      //     reject(err);
+      //   } else {
+      //     resolve();
+      //   }
+      // });
+    });
+  }
+
+  function deleteOldImage() {
+    return new Promise(function(resolve, reject) {
+      if (existingImageUrl !== Product.schema.path('imageURL').defaultValue) {
+        fs.unlink(existingImageUrl, function(unlinkError) {
+          if (unlinkError) {
+            console.log(unlinkError);
+            reject({
+              message: 'Error occurred while deleting old profile picture'
+            });
+          } else {
+            resolve();
+          }
+        });
+      } else {
+        resolve();
+      }
+    });
+  }
+}
+
+function addToSelling(product, user, res) {
+  var query = {
+    'user': user
+  };
+
+  var update = {
+    $addToSet: {
+      'products': product._id
+    }
+  };
+
+  Selling.findOneAndUpdate(query, update, {
+    upsert: true
+  }, function(err, doc) {
+    if (err) {
+      return res.status(500).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+}
 
 /**
  * Show the current Product
@@ -100,7 +207,7 @@ exports.bid = function(req, res) {
   });
 
   var query = {
-    'user': req.user  
+    'user': req.user
   };
 
   var update = {

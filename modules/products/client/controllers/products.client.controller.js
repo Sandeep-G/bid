@@ -6,19 +6,29 @@
     .module('products')
     .controller('ProductsController', ProductsController);
 
-  ProductsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'productResolve'];
+  ProductsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'productResolve', 'Upload', 'Notification'];
 
-  function ProductsController($scope, $state, $window, Authentication, product) {
+  function ProductsController($scope, $state, $window, Authentication, product, Upload, Notification) {
     var vm = this;
 
     vm.authentication = Authentication;
     vm.product = product;
     vm.error = null;
     vm.form = {};
+    vm.fileSelected = false;
     vm.remove = remove;
     vm.save = save;
+
+    vm.product.name = 'Test';
+    vm.product.startingBid = 30;
+    vm.product.bidIncrement = 1;
+    vm.product.quantity = 1;
+    vm.product.category = 'category';
+    vm.product.location = 'Dallas';
+    vm.product.endsAt = new Date();
+
     vm.bidItem = bidItem;
-    if(vm.product.currentBid === undefined || vm.product.currentBid === null)
+    if (vm.product.currentBid === undefined || vm.product.currentBid === null)
       vm.minBid = vm.product.startingBid;
     else
       vm.minBid = vm.product.currentBid.amount + vm.product.bidIncrement;
@@ -32,7 +42,6 @@
     }
 
     function bidItem() {
-      console.log('Bidding item');
       vm.product.$bid({
         amount: vm.newBid
       });
@@ -45,6 +54,9 @@
         return false;
       }
 
+      console.log('IMAGE URL');
+      console.log(vm.product.imageURL);
+
       // TODO: move create/update logic to service
       if (vm.product._id) {
         vm.product.$update(successCallback, errorCallback);
@@ -56,6 +68,7 @@
         $state.go('products.view', {
           productId: res._id
         });
+        vm.fileSelected = false;
       }
 
       function errorCallback(res) {

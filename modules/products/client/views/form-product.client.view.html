@@ -1,10 +1,20 @@
-<section>
+<section class="layout">
   <div class="page-header">
     <h1>{{vm.product._id ? 'Edit Product' : 'New Product'}}</h1>
   </div>
   <div class="col-md-12">
     <form name="vm.form.productForm" class="form-horizontal" ng-submit="vm.save(vm.form.productForm.$valid)" novalidate>
       <fieldset>
+          <!-- <div class="form-group text-center">
+            <img ngf-src="vm.fileSelected ? vm.product.imageURL : '/' + vm.product.imageURL" alt="{{vm.product.name}}" class="img-thumbnail user-profile-picture" ngf-drop>
+          </div>
+          <div ng-show="vm.loading" class="form-group text-center">
+            <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+          </div>
+          <div ng-show="!vm.fileSelected" class="text-center form-group">
+            <button class="btn btn-default btn-file" ngf-select="(vm.fileSelected = true) && (vm.loading = false)" ng-model="vm.product.imageURL" accept="image/*" ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">Select Picture</button>
+          </div> -->
+
         <div class="form-group" show-errors>
           <label class="control-label" for="name">Name</label>
           <input name="name" type="text" ng-model="vm.product.name" id="name" class="form-control" placeholder="name" required>
@@ -40,6 +50,34 @@
             <p class="help-block error-text" ng-message="required">Quantity is required.</p>
           </div>
         </div>
+
+        <!--<div class="form-group" show-errors>
+          <label class="control-label" for="category">Category</label>
+          <input name="category" type="text" ng-model="vm.product.category" id="category" class="form-control" placeholder="category" required>
+          <div ng-messages="vm.form.productForm.category.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Category is required.</p>
+          </div>
+        </div> -->
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="category">Category</label>
+          <select name="category"  ng-model="vm.product.category" id="category" class="form-control" placeholder="category" required>
+              <option value="all" ng-selected="true">All</option>
+              <option value="electronics">Electronics</option>
+              <option value="jewelry">Jewelry</option>
+              <option value="sports">Sports</option>
+              <option value="homegoods">Homegoods</option>
+              <option value="kitchen">Kitchen</option>
+              <<option value="travel">Travel</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="description">Description of the product</label>
+          <textarea rows="5" cold="17" ng-model="vm.product.description" id="description" class="form-control" placeholder="description">
+          </textarea>
+        </div>
+
         <div class="form-group" show-errors>
           <label class="control-label" for="location">Location</label>
           <input name="location" type="text" ng-model="vm.product.location" id="location" class="form-control" placeholder="location" required>
@@ -47,15 +85,14 @@
             <p class="help-block error-text" ng-message="required">Location is required.</p>
           </div>
         </div>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="category">Category</label>
-          <input name="category" type="text" ng-model="vm.product.category" id="category" class="form-control" placeholder="category" required>
-          <div ng-messages="vm.form.productForm.category.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Category is required.</p>
 
+        <div class="form-group" show-errors>
+          <label class="control-label" for="endsAt">End Date</label>
+          <input name="endsAt" type="date" ng-model="vm.product.endsAt" id="endsAt" class="form-control" placeholder="End Date" required/>
+          <div ng-messages="vm.form.productForm.endsAt.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">End Date is required.</p>
           </div>
         </div>
-
         <br/>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.product._id ? 'Update' : 'Create'}}</button>
