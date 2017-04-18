@@ -1,4 +1,13 @@
-<section>
+<style>
+.layout {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+  }
+
+</style>
+
+<section class="layout">
   <div class="page-header">
     <h1>{{vm.selling._id ? 'Edit Product' : 'New Product'}}</h1>
   </div>
@@ -40,6 +49,34 @@
             <p class="help-block error-text" ng-message="required">Quantity is required.</p>
           </div>
         </div>
+
+        <!--<div class="form-group" show-errors>
+          <label class="control-label" for="category">Category</label>
+          <input name="category" type="text" ng-model="vm.selling.category" id="category" class="form-control" placeholder="category" required>
+          <div ng-messages="vm.form.sellingForm.category.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Category is required.</p>
+          </div>
+        </div> -->
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="category">Category</label>
+          <select name="category"  ng-model="vm.selling.category" id="category" class="form-control" placeholder="category" required>
+              <option value="all" ng-selected="true">All</option>
+              <option value="electronics">Electronics</option>
+              <option value="jewelry">Jewelry</option>
+              <option value="sports">Sports</option>
+              <option value="homegoods">Homegoods</option>
+              <option value="kitchen">Kitchen</option>
+              <<option value="travel">Travel</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="description">Description of the product</label>
+          <textarea rows="5" cold="17" ng-model="vm.selling.description" id="description" class="form-control" placeholder="description">
+          </textarea>
+        </div>
+
         <div class="form-group" show-errors>
           <label class="control-label" for="location">Location</label>
           <input name="location" type="text" ng-model="vm.selling.location" id="location" class="form-control" placeholder="location" required>
@@ -47,17 +84,11 @@
             <p class="help-block error-text" ng-message="required">Location is required.</p>
           </div>
         </div>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="category">Category</label>
-          <input name="category" type="text" ng-model="vm.selling.category" id="category" class="form-control" placeholder="category" required>
-          <div ng-messages="vm.form.sellingForm.category.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Category is required.</p>
-          </div>
-        </div>
+
         <div class="form-group" show-errors>
           <label class="control-label" for="endsAt">End Date</label>
           <input name="endsAt" type="date" ng-model="vm.selling.endsAt" id="endsAt" class="form-control" placeholder="End Date" required/>
-          <div ng-messages="vm.form.sellingForm.category.$error" role="alert">
+          <div ng-messages="vm.form.sellingForm.endsAt.$error" role="alert">
             <p class="help-block error-text" ng-message="required">End Date is required.</p>
           </div>
         </div>
