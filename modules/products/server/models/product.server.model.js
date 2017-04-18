@@ -69,6 +69,11 @@ var ProductSchema = new Schema({
   canceled: {
     type: Boolean,
     default: false
+  },
+  description: {
+    type: String,
+    trim: true,
+    default: 'No description available.'
   }
 });
 
