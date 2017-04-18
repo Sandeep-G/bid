@@ -16,7 +16,7 @@
       })
       .state('sellings.listActiveItems', {
         url: '/activeItems',
-        templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
+        templateUrl: '/modules/sellings/client/views/list-sellings.client.view.html',
         controller: 'SellingsListController',
         controllerAs: 'vm',
         data: {
@@ -25,7 +25,7 @@
       })
       .state('sellings.listSoldItems', {
         url: '/soldItems',
-        templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
+        templateUrl: '/modules/sellings/client/views/list-sellings.client.view.html',
         controller: 'SellingsListController',
         controllerAs: 'vm',
         data: {
@@ -34,7 +34,7 @@
       })
       .state('sellings.listUnsoldItems', {
         url: '/unsoldItems',
-        templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
+        templateUrl: '/modules/sellings/client/views/list-sellings.client.view.html',
         controller: 'SellingsListController',
         controllerAs: 'vm',
         data: {
@@ -43,7 +43,7 @@
       })
       .state('sellings.listCanceledItems', {
         url: '/canceledItems',
-        templateUrl: 'modules/sellings/client/views/list-sellings.client.view.html',
+        templateUrl: '/modules/sellings/client/views/list-sellings.client.view.html',
         controller: 'SellingsListController',
         controllerAs: 'vm',
         data: {
@@ -52,7 +52,7 @@
       })
       .state('sellings.sellItem', {
         url: '/sellItem',
-        templateUrl: 'modules/sellings/client/views/form-sell-item.client.view.html',
+        templateUrl: '/modules/sellings/client/views/form-sell-item.client.view.html',
         controller: 'SellingsController',
         controllerAs: 'vm',
         resolve: {
@@ -65,7 +65,7 @@
       })
       .state('sellings.create', {
         url: '/create',
-        templateUrl: 'modules/sellings/client/views/form-selling.client.view.html',
+        templateUrl: '/modules/sellings/client/views/form-selling.client.view.html',
         controller: 'SellingsController',
         controllerAs: 'vm',
         resolve: {
@@ -78,7 +78,7 @@
       })
       .state('sellings.edit', {
         url: '/:sellingId/edit',
-        templateUrl: 'modules/sellings/client/views/form-selling.client.view.html',
+        templateUrl: '/modules/sellings/client/views/form-selling.client.view.html',
         controller: 'SellingsController',
         controllerAs: 'vm',
         resolve: {
@@ -91,7 +91,7 @@
       })
       .state('sellings.view', {
         url: '/:sellingId',
-        templateUrl: 'modules/sellings/client/views/view-selling.client.view.html',
+        templateUrl: '/modules/sellings/client/views/view-selling.client.view.html',
         controller: 'SellingsController',
         controllerAs: 'vm',
         resolve: {
