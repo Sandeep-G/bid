@@ -16,7 +16,7 @@
       })
       .state('buyings.listWinningBids', {
         url: '/listWinning',
-        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        templateUrl: '/modules/buyings/client/views/list-buyings.client.view.html',
         controller: 'BuyingsListController',
         controllerAs: 'vm',
         data: {
@@ -25,7 +25,7 @@
       })
       .state('buyings.listLosingBids', {
         url: '/listLosing',
-        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        templateUrl: '/modules/buyings/client/views/list-buyings.client.view.html',
         controller: 'BuyingsListController',
         controllerAs: 'vm',
         data: {
@@ -34,7 +34,7 @@
       })
       .state('buyings.listWonBids', {
         url: '/listWon',
-        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        templateUrl: '/modules/buyings/client/views/list-buyings.client.view.html',
         controller: 'BuyingsListController',
         controllerAs: 'vm',
         data: {
@@ -43,7 +43,7 @@
       })
       .state('buyings.purchaseHistory', {
         url: '/purchaseHistory',
-        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        templateUrl: '/modules/buyings/client/views/list-buyings.client.view.html',
         controller: 'BuyingsListController',
         controllerAs: 'vm',
         data: {
@@ -52,7 +52,7 @@
       })
       .state('buyings.list', {
         url: '',
-        templateUrl: 'modules/buyings/client/views/list-buyings.client.view.html',
+        templateUrl: '/modules/buyings/client/views/list-buyings.client.view.html',
         controller: 'BuyingsListController',
         controllerAs: 'vm',
         data: {
@@ -61,7 +61,7 @@
       })
       .state('buyings.create', {
         url: '/create',
-        templateUrl: 'modules/buyings/client/views/form-buying.client.view.html',
+        templateUrl: '/modules/buyings/client/views/form-buying.client.view.html',
         controller: 'BuyingsController',
         controllerAs: 'vm',
         resolve: {
@@ -74,7 +74,7 @@
       })
       .state('buyings.edit', {
         url: '/:buyingId/edit',
-        templateUrl: 'modules/buyings/client/views/form-buying.client.view.html',
+        templateUrl: '/modules/buyings/client/views/form-buying.client.view.html',
         controller: 'BuyingsController',
         controllerAs: 'vm',
         resolve: {
@@ -87,7 +87,7 @@
       })
       .state('buyings.view', {
         url: '/:buyingId',
-        templateUrl: 'modules/buyings/client/views/view-buying.client.view.html',
+        templateUrl: '/modules/buyings/client/views/view-buying.client.view.html',
         controller: 'BuyingsController',
         controllerAs: 'vm',
         resolve: {
