@@ -23,8 +23,6 @@
         vm.products = data;
         setPage(1);
       });
-      // initialize to page 1
-      // vm.setPage(1);
     }
 
     function setPage(page) {
