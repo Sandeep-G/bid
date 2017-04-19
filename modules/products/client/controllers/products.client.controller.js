@@ -60,6 +60,8 @@
       console.log('IMAGE URL');
       console.log(vm.product.imageURL);
 
+      console.log(vm.product);
+
       // TODO: move create/update logic to service
       if (vm.product._id) {
         vm.product.$update(successCallback, errorCallback);
