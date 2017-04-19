@@ -19,6 +19,8 @@
     vm.remove = remove;
     vm.save = save;
     vm.edit = edit;
+    vm.makeBid = makeBid;
+    vm.makePayment = makePayment;
 
     // TODO Remove auto fill
     if (vm.product === undefined || vm.product === null || vm.product.name === undefined || vm.product.name === '') {
@@ -31,7 +33,6 @@
       vm.product.endsAt = new Date();
     }
 
-    vm.makeBid = makeBid;
     if (vm.product.currentBid === undefined || vm.product.currentBid === null)
       vm.minBid = vm.product.startingBid;
     else

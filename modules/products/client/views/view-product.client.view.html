@@ -61,7 +61,7 @@
               <div class="row" ng-if="vm.product.currentBid != null">
                 <!-- Bidding form -->
                 <div class="col-xs-3 p-view-label">
-                  Current Bid
+                  {{vm.product.sold ? 'Purchase Amount' : 'Current Bid'}}
                 </div>
                 <div class="col-xs-9 p-view value">
                   <b>
@@ -71,7 +71,10 @@
               </div>
               <!-- End Display Bid -->
               <div class="row" ng-if="!vm.product.isCurrentUserOwner && vm.isActive">
-                <div class="p-view-bid-input col-xs-offset-3 col-xs-4">
+                <div class="p-view-bid-input col-xs-offset-3 col-xs-3"  ng-show="vm.product.sold">
+                    <button type="button" class="btn btn-primary" ng-click="vm.makeBid()">Make Payment</button>
+                </div>
+                <div class="p-view-bid-input col-xs-offset-3 col-xs-4" ng-show="!vm.product.sold">
                   <div>
                     <input type="number" class="form-control" aria-label="..." ng-model="vm.newBid">
                   </div>
@@ -79,7 +82,7 @@
                     <span>Enter {{vm.product.currentBid == null ? vm.product.startingBid : vm.product.currentBid.amount + vm.product.bidIncrement | currency}} or more</span>
                   </div>
                 </div>
-                <div class="p-view-bid-btn col-xs-3">
+                <div class="p-view-bid-btn col-xs-3" ng-show="!vm.product.sold">
                   <button type="button" class="btn btn-primary" ng-click="vm.makeBid()">Place Bid</button>
                 </div>
               </div>

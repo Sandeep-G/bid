@@ -40,7 +40,7 @@ exports.listWinning = function(req, res) {
         var product = buying.products[i];
         if (product.sold || product.canceled)
           continue;
-        if (product.endsAt < new Date())
+        if (new Date(product.endsAt) < new Date())
           continue;
         if (req.user && product.currentBid.bidder && req.user._id.toString() === product.currentBid.bidder._id.toString())
           products.push(product);
@@ -67,7 +67,7 @@ exports.listLosing = function(req, res) {
         var product = buying.products[i];
         if (product.sold || product.canceled)
           continue;
-        if (product.endsAt < new Date())
+        if (new Date(product.endsAt) < new Date())
           continue;
         if (req.user && product.currentBid.bidder && req.user._id.toString() !== product.currentBid.bidder._id.toString())
           products.push(product);
@@ -92,10 +92,16 @@ exports.listWon = function(req, res) {
       var products = [];
       for (var i = 0, len = buying.products.length; i < len; i++) {
         var product = buying.products[i];
-        if (product.endsAt >= new Date() || product.canceled)
+        if (new Date(product.endsAt) >= new Date() || product.canceled)
           continue;
-        if (req.user && product.currentBid.bidder && req.user._id.toString() === product.currentBid.bidder._id.toString())
+        if (req.user && product.currentBid.bidder && req.user._id.toString() === product.currentBid.bidder._id.toString()) {
+          if (!product.sold) {
+            product.sold = true;
+            product.save();
+            console.log('SAVED sold product from buying');
+          }
           products.push(product);
+        }
       }
       res.jsonp(products);
     }
@@ -118,9 +124,7 @@ exports.listPurchased = function(req, res) {
       var products = [];
       for (var i = 0, len = buying.products.length; i < len; i++) {
         var product = buying.products[i];
-        if (product.endsAt >= new Date() || product.canceled)
-          continue;
-        if (product.sold && req.user && product.currentBid.bidder && req.user._id.toString() === product.currentBid.bidder._id.toString())
+        if (product.paid && req.user && product.currentBid.bidder && req.user._id.toString() === product.currentBid.bidder._id.toString())
           products.push(product);
       }
       res.jsonp(products);

@@ -63,7 +63,7 @@ exports.listActiveItems = function(req, res) {
     'sold': false,
     'canceled': false,
     'endsAt': {
-      $gte: new Date()
+      $gt: new Date()
     }
   }).sort('-created').populate([{
     path: 'seller',
@@ -91,10 +91,9 @@ exports.listActiveItems = function(req, res) {
 exports.listSoldItems = function(req, res) {
   Product.find({
     'seller': req.user,
-    'sold': true,
     'canceled': false,
     'endsAt': {
-      $lt: new Date()
+      $lte: new Date()
     }
   }).sort('-created').populate([{
     path: 'currentBid',
@@ -108,7 +107,19 @@ exports.listSoldItems = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(sellings);
+      var products = [];
+      for (var i = 0, len = sellings.products.length; i < len; i++) {
+        var product = sellings.products[i];
+        if (product.currentBid.bidder) {
+          if (!product.sold) {
+            product.sold = true;
+            product.save();
+            console.log('SAVED sold product from selling');
+          }
+          products.push(product);
+        }
+      }
+      res.jsonp(products);
     }
   });
 };
@@ -122,7 +133,7 @@ exports.listUnsoldItems = function(req, res) {
     'sold': false,
     'canceled': false,
     'endsAt': {
-      $lt: new Date()
+      $lte: new Date()
     }
   }).sort('-created').populate([{
     path: 'currentBid',
