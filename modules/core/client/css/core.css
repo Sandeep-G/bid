@@ -95,3 +95,7 @@ a:hover .header-profile-image {
 #searchbox {
   min-width: 150px;
 }
+
+.navbar-brand{
+  padding-top: 10px;
+}
