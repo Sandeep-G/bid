@@ -18,6 +18,7 @@
     vm.fileSelected = false;
     vm.remove = remove;
     vm.save = save;
+    vm.edit = edit;
 
     // TODO Remove auto fill
     if (vm.product === undefined || vm.product === null || vm.product.name === undefined || vm.product.name === '') {
@@ -30,12 +31,21 @@
       vm.product.endsAt = new Date();
     }
 
-    vm.bidItem = bidItem;
+    vm.makeBid = makeBid;
     if (vm.product.currentBid === undefined || vm.product.currentBid === null)
       vm.minBid = vm.product.startingBid;
     else
       vm.minBid = vm.product.currentBid.amount + vm.product.bidIncrement;
     vm.newBid = vm.minBid;
+
+    vm.product.endsAt = new Date(vm.product.endsAt);
+    vm.isActive = vm.product.endsAt > new Date() && !vm.product.canceled && !vm.product.sold;
+    vm.isAdmin = false;
+    var roles = vm.authentication.user.roles;
+    for (var i = 0; i < roles.length; i++) {
+      if (roles[i] === 'admin')
+        vm.isAdmin = true;
+    }
 
     // Remove existing Product
     function remove() {
@@ -44,10 +54,21 @@
       }
     }
 
-    function bidItem() {
+    function edit() {
+      $state.go('products.edit', {
+        productId: vm.product._id
+      });
+    }
+
+    function makeBid() {
       vm.product.$bid({
         amount: vm.newBid
-      });
+      }, successCallback, errorCallback);
+    }
+
+    function makePayment() {
+      vm.product.paid = true;
+      vm.product.$update(successCallback, errorCallback);
     }
 
     // Save Product
@@ -68,17 +89,16 @@
       } else {
         vm.product.$save(successCallback, errorCallback);
       }
+    }
 
-      function successCallback(res) {
-        $state.go('products.view', {
-          productId: res._id
-        });
-        vm.fileSelected = false;
-      }
+    function successCallback(res) {
+      $state.go('products.view', {
+        productId: res._id
+      });
+    }
 
-      function errorCallback(res) {
-        vm.error = res.data.message;
-      }
+    function errorCallback(res) {
+      vm.error = res.data.message;
     }
   }
 }());
