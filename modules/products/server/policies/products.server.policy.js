@@ -37,7 +37,7 @@ exports.invokeRolesPolicies = function() {
       permissions: ['post']
     }, {
       resources: '/api/products/:productId',
-      permissions: ['get']
+      permissions: ['get', 'delete']
     }, {
       resources: '/api/products/:productId/bid',
       permissions: ['put']
