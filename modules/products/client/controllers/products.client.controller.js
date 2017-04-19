@@ -85,7 +85,9 @@
 
       // TODO: move create/update logic to service
       if (vm.product._id) {
-        vm.product.$update(successCallback, errorCallback);
+        vm.product.$update({
+          productId: vm.product._id
+        }, successCallback, errorCallback);
       } else {
         vm.product.$save(successCallback, errorCallback);
       }

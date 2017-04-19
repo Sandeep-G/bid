@@ -14,7 +14,7 @@
     }, {
       update: {
         method: 'PUT',
-        url: '/api/products'
+        url: '/api/products/:productId'
       }, save: {
         method: 'POST',
         url: '/api/products'
