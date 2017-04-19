@@ -9,12 +9,12 @@
     // service definition
     var service = {};
 
-    service.GetPager = GetPager;
+    service.getPager = getPager;
 
     return service;
 
     // service implementation
-    function GetPager(totalItems, currentPage, pageSize) {
+    function getPager(totalItems, currentPage, pageSize) {
       // default to first page
       currentPage = currentPage || 1;
 
@@ -49,7 +49,10 @@
       var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
       // create an array of pages to ng-repeat in the pager control
-      var pages = _.range(startPage, endPage + 1);
+      var pages = [];
+      for (var i = startPage; i < endPage + 1; i++) {
+        pages.push(i);
+      }
 
       // return object with all pager properties required by the view
       return {
