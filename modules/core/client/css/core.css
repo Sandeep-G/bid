@@ -22,6 +22,10 @@ body {
   opacity: 0.8;
   width: 28px;
 }
+.inactive {
+  pointer-events: none;
+  cursor: default;
+}
 .open .header-profile-image,
 a:hover .header-profile-image {
   opacity: 1;

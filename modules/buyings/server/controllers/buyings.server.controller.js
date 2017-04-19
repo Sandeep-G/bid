@@ -18,7 +18,7 @@ var populateQuery = {
     path: 'currentBid',
     populate: {
       path: 'bidder',
-      select: 'displayName'
+      select: ['displayName']
     }
   }]
 };

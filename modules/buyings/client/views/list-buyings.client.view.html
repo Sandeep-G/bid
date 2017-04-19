@@ -1,18 +1,20 @@
 <section>
   <div class="page-header">
-    <h1>Buyings</h1>
+    <h3>{{vm.header}}</h3>
   </div>
   <div ng-if="vm.items.length">
     <div class="list-group">
-      <a ng-repeat="product in vm.items" ui-sref="products.view({ productId: product._id })" class="list-group-item">
-        <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="product.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="product.seller" ng-bind="product.seller.displayName"></span>
-        <span ng-if="!product.seller">Deleted User</span>
-      </small>
-        <h4 class="list-group-item-heading" ng-bind="product.name"></h4>
+      <a ng-repeat="product in vm.items" ui-sref="products.view({ productId: product._id })" ng-class="vm.isSold ? 'list-group-item inactive' : 'list-group-item '" style="overflow-y:auto;">
+        <div class="col-md-6">
+          <h4 class="list-group-item-heading" ng-bind="product.name"></h4>
+        </div>
+        <div class="col-md-3">
+          <h4 ng-show="!vm.isOver" class="list-group-item-heading">Ends At : {{product.endsAt | date:'yyyy-MM-dd'}}</h4>
+        </div>
+        <div class="col-md-3">
+          <h4 class="list-group-item-heading">{{vm.isMyBid != true ? 'Max Bid' : vm.isOver == true ? 'Purchase Amt' : 'My Bid'}} : {{product.currentBid.amount | currency}}</h4>
+        </div>
+        <!-- <h4 class="list-group-item-heading" ng-bind="product.name"></h4> -->
       </a>
     </div>
   </div>
