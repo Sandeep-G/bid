@@ -26,7 +26,8 @@ var validateLocalStrategyProperty = function (property) {
  * A Validation function for local strategy email
  */
 var validateLocalStrategyEmail = function (email) {
-  return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, { require_tld: false }));
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return ((this.provider !== 'local' && !this.updated) || (validator.isEmail(email, { require_tld: false }) && re.test(email)));
 };
 
 /**
@@ -73,6 +74,7 @@ var UserSchema = new Schema({
       unique: true,
       sparse: true // For this to work on a previously indexed field, the index must be dropped & the application restarted.
     },
+    unique: 'Email already exists',
     lowercase: true,
     trim: true,
     default: '',
