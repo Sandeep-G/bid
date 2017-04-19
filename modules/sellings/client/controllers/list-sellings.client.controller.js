@@ -15,13 +15,22 @@
     initController();
 
     function initController() {
+      vm.displayBid = true;
+      vm.isActive = false;
       if ($state.current.url === '/activeItems') {
+        vm.header = 'Active Items';
+        vm.isActive = true;
         vm.products = SellingsService.listActiveItems(onSuccessCallback);
       } else if ($state.current.url === '/soldItems') {
+        vm.header = 'Sold Items';
         vm.products = SellingsService.listSoldItems(onSuccessCallback);
       } else if ($state.current.url === '/unsoldItems') {
+        vm.header = 'Unsold Items';
+        vm.displayBid = false;
         vm.products = SellingsService.listUnsoldItems(onSuccessCallback);
-      } else if ($state.current.url === '/listCanceledItems') {
+      } else if ($state.current.url === '/canceledItems') {
+        vm.header = 'Canceled Items';
+        vm.displayBid = false;
         vm.products = SellingsService.listCanceledItems(onSuccessCallback);
       }
     }
