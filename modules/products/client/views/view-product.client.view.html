@@ -70,6 +70,11 @@
                 </div>
               </div>
               <!-- End Display Bid -->
+              <div class="row" ng-if="!vm.product.isCurrentUserOwner && vm.product.sold && !vm.product.paid">
+                <div class="p-view-bid-input col-xs-offset-3 col-xs-3"  ng-show="vm.product.sold">
+                    <button type="button" class="btn btn-primary" ng-click="vm.makePayment()">Make Payment</button>
+                </div>
+              </div>
               <div class="row" ng-if="!vm.product.isCurrentUserOwner && vm.isActive">
                 <div class="p-view-bid-input col-xs-offset-3 col-xs-3"  ng-show="vm.product.sold">
                     <button type="button" class="btn btn-primary" ng-click="vm.makeBid()">Make Payment</button>

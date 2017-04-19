@@ -73,7 +73,11 @@
 
     function makePayment() {
       vm.product.paid = true;
-      vm.product.$update(successCallback, errorCallback);
+      vm.product.$update(function(res) {
+        Notification.success('Payment made successfully!');
+      }, function(res) {
+        Notification.error('Oops! Payment failed.');
+      });
     }
 
     // Save Product

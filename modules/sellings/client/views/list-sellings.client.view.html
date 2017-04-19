@@ -4,7 +4,7 @@
   </div>
   <div ng-if="vm.items.length">
     <div class="list-group">
-      <a ng-repeat="product in vm.items" ui-sref="products.view({ productId: product._id })" class="list-group-item" style="overflow-y:auto;">
+      <a ng-repeat="product in vm.items" ui-sref="products.view({ productId: product._id })" ng-class="!vm.isActive ? 'list-group-item inactive' : 'list-group-item '" style="overflow-y:auto;">
         <div class="col-md-6">
           <h4 class="list-group-item-heading" ng-bind="product.name"></h4>
         </div>

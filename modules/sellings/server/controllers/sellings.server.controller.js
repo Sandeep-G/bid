@@ -108,8 +108,8 @@ exports.listSoldItems = function(req, res) {
       });
     } else {
       var products = [];
-      for (var i = 0, len = sellings.products.length; i < len; i++) {
-        var product = sellings.products[i];
+      for (var i = 0, len = sellings.length; i < len; i++) {
+        var product = sellings[i];
         if (product.currentBid.bidder) {
           if (!product.sold) {
             product.sold = true;
