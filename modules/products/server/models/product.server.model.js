@@ -22,7 +22,7 @@ var ProductSchema = new Schema({
   },
   imageURL: {
     type: String,
-    default: '/modules/products/client/img/products/default.png'
+    default: '/modules/products/client/img/products/default.jpg'
   },
   startsAt: {
     type: Date,

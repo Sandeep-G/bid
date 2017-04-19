@@ -20,7 +20,7 @@
     menuService.addSubMenuItem('topbar', 'sellings', {
       title: 'Sell Item',
       state: 'products.create',
-      roles: ['user']
+      roles: ['user', 'admin']
     });
 
     // Add the dropdown list active items

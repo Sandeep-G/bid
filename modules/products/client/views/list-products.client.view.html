@@ -1,29 +1,29 @@
-<div class="row" style="margin-top: 75px;">
-  <div class="col-xs-10 col-xs-offset-1">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="col-xs-3">
-          <a ng-repeat="product in vm.products" ui-sref="products.view({ productId: product._id })">
-            <div class="card">
-              <img class="card-img-top" src="http://getbootstrap.com/examples/screenshots/cover.jpg">
-              <div class="card-block">
-                <h4 class="card-title" ng-bind="product.name">Card Title</h4>
-                <div class="meta">
-                  Posted by <span ng-if="product.seller" ng-bind="product.seller.displayName"></span>
-                  <span ng-if="!product.seller">Deleted User</span>
-                </div>
-              </div>
-              <div class="card-footer">
-                <span class="float-right">Posted on</span>
-                <span ng-bind="product.created | date:'mediumDate'"></span>
-              </div>
+<section>
+  <div class="col-xs-10 col-xs-offset-1" style="margin-top: 50px;">
+    <div ng-repeat="product in vm.products track by $index">
+      <a class="col-xs-3" ui-sref="products.view({ productId: product._id })" style="text-decoration: none;">
+        <div class="card">
+          <img class="card-img-top" ng-src="{{product.imageURL}}" />
+          <div class="card-block">
+            <div class="card-title" ng-bind="product.name">
+              Card Title
             </div>
-          </a>
+
+            <div class="meta">
+              {{product.currentBid == null ? product.startingBid : product.currentBid.amount | currency}}
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="float-right">{{product.bidHistory.length}} bids</span>
+            <span ng-bind="product.created | date:'mediumDate'"></span>
+          </div>
         </div>
-        <div class="alert alert-warning text-center" ng-if="vm.products.$resolved && !vm.products.length">
-          No Products yet, why don't you <a ui-sref="products.create">create one</a>?
-        </div>
-      </div>
+    </div>
+    </a>
+
+    <div class="alert alert-warning text-center" ng-if="vm.products.$resolved && !vm.products.length">
+      We couldn't find any relevant products 😞
     </div>
   </div>
-</div>
+  </div>
+</section>

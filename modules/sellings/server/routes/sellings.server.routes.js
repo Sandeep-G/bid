@@ -23,9 +23,4 @@ module.exports = function(app) {
   app.route('/api/sellings/listCanceledItems').all(sellingsPolicy.isAllowed)
     .get(sellings.listCanceledItems);
 
-  // TODO Resolve client side API call
-  // Temporary fix
-  app.route('/sellings/api/sellings/sellItem').all(sellingsPolicy.isAllowed)
-    .put(sellings.sellItem);
-
 };

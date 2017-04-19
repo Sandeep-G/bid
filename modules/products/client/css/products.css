@@ -9,13 +9,14 @@
   border: none;
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  margin-bottom: 30px;
 }
 
 .card-block {
   font-size: 1em;
   position: relative;
   margin: 0;
-  padding: 1em;
+  padding: 1em 1em 0 1em;
   border: none;
   border-top: 1px solid rgba(34, 36, 38, .1);
   box-shadow: none;
@@ -53,6 +54,9 @@
   font-size: 1.28571429em;
   font-weight: 700;
   line-height: 1.2857em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .layout {

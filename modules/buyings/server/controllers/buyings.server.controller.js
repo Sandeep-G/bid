@@ -9,72 +9,18 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
-/**
- * Create a Buying
- */
-exports.create = function(req, res) {
-  var buying = new Buying(req.body);
-  buying.user = req.user;
-
-  buying.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(buying);
+var populateQuery = {
+  path: 'products',
+  populate: [{
+    path: 'seller',
+    select: 'displayName'
+  }, {
+    path: 'currentBid',
+    populate: {
+      path: 'bidder',
+      select: 'displayName'
     }
-  });
-};
-
-/**
- * Show the current Buying
- */
-exports.read = function(req, res) {
-  // convert mongoose document to JSON
-  var buying = req.buying ? req.buying.toJSON() : {};
-
-  // Add a custom field to the Article, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  buying.isCurrentUserOwner = req.user && buying.user && buying.user._id.toString() === req.user._id.toString();
-
-  res.jsonp(buying);
-};
-
-/**
- * Update a Buying
- */
-exports.update = function(req, res) {
-  var buying = req.buying;
-
-  buying = _.extend(buying, req.body);
-
-  buying.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(buying);
-    }
-  });
-};
-
-/**
- * Delete an Buying
- */
-exports.delete = function(req, res) {
-  var buying = req.buying;
-
-  buying.remove(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(buying);
-    }
-  });
+  }]
 };
 
 /**
@@ -83,19 +29,7 @@ exports.delete = function(req, res) {
 exports.listWinning = function(req, res) {
   Buying.findOne({
     'user': req.user
-  }).sort('-created').populate({
-    path: 'products',
-    populate: [{
-      path: 'seller',
-      select: 'displayName'
-    }, {
-      path: 'currentBid',
-      populate: {
-        path: 'bidder',
-        select: 'displayName'
-      }
-    }]
-  }).exec(function(err, buying) {
+  }).sort('-created').populate(populateQuery).exec(function(err, buying) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -122,19 +56,7 @@ exports.listWinning = function(req, res) {
 exports.listLosing = function(req, res) {
   Buying.findOne({
     'user': req.user
-  }).sort('-created').populate({
-    path: 'products',
-    populate: [{
-      path: 'seller',
-      select: 'displayName'
-    }, {
-      path: 'currentBid',
-      populate: {
-        path: 'bidder',
-        select: 'displayName'
-      }
-    }]
-  }).exec(function(err, buying) {
+  }).sort('-created').populate(populateQuery).exec(function(err, buying) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -161,19 +83,7 @@ exports.listLosing = function(req, res) {
 exports.listWon = function(req, res) {
   Buying.findOne({
     'user': req.user
-  }).sort('-created').populate({
-    path: 'products',
-    populate: [{
-      path: 'seller',
-      select: 'displayName'
-    }, {
-      path: 'currentBid',
-      populate: {
-        path: 'bidder',
-        select: 'displayName'
-      }
-    }]
-  }).exec(function(err, buying) {
+  }).sort('-created').populate(populateQuery).exec(function(err, buying) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -199,19 +109,7 @@ exports.listWon = function(req, res) {
 exports.listPurchased = function(req, res) {
   Buying.findOne({
     'user': req.user
-  }).sort('-created').populate({
-    path: 'products',
-    populate: [{
-      path: 'seller',
-      select: 'displayName'
-    }, {
-      path: 'currentBid',
-      populate: {
-        path: 'bidder',
-        select: 'displayName'
-      }
-    }]
-  }).exec(function(err, buying) {
+  }).sort('-created').populate(populateQuery).exec(function(err, buying) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -226,21 +124,6 @@ exports.listPurchased = function(req, res) {
           products.push(product);
       }
       res.jsonp(products);
-    }
-  });
-};
-
-/**
- * List of Buyings
- */
-exports.list = function(req, res) {
-  Buying.find().sort('-created').populate('user', 'displayName').exec(function(err, buyings) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(buyings);
     }
   });
 };

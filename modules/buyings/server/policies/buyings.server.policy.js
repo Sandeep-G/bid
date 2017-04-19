@@ -13,14 +13,8 @@ acl = new acl(new acl.memoryBackend());
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
-    roles: ['admin'],
+    roles: ['admin', 'user'],
     allows: [{
-      resources: '/api/buyings',
-      permissions: '*'
-    }, {
-      resources: '/api/buyings/:buyingId',
-      permissions: '*'
-    }, {
       resources: '/api/buyings/listWinning',
       permissions: '*'
     }, {
@@ -32,27 +26,6 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/buyings/listPurchased',
       permissions: '*'
-    }]
-  }, {
-    roles: ['user'],
-    allows: [{
-      resources: '/api/buyings',
-      permissions: ['get', 'post']
-    }, {
-      resources: '/api/buyings/:buyingId',
-      permissions: ['get']
-    }, {
-      resources: '/api/buyings/listWinning',
-      permissions: ['get']
-    }, {
-      resources: '/api/buyings/listLosing',
-      permissions: ['get']
-    }, {
-      resources: '/api/buyings/listWon',
-      permissions: ['get']
-    }, {
-      resources: '/api/buyings/listPurchased',
-      permissions: ['get']
     }]
   }, {
     roles: ['guest'],

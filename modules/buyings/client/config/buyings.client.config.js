@@ -13,7 +13,7 @@
       title: 'Buying',
       state: 'buyings',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['user', 'admin']
     });
 
     // Add the dropdown list winning bids
