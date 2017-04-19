@@ -35,7 +35,6 @@
 
       // get current page of items
       vm.items = vm.products.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
-      console.log(vm.items);
     }
   }
 }());

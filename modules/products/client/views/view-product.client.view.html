@@ -5,14 +5,14 @@
     </div>
     <div class="row">
       <div class="col-md-5">
-        <img ng-src="{{vm.product.imageURL}}" alt="vm.product.name" width="100%" />
+        <img class="p-view-img" ng-src="{{vm.product.imageURL}}" alt="vm.product.name" width="100%" />
       </div>
       <div class="col-md-7">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h1 class="panel-title">{{vm.product.name}}</h3>
+        <div class="container-fluid">
+          <div class="row p-view-header">
+            <h3 class="">{{vm.product.name}}</h3>
           </div>
-          <div class="panel-body">
+          <div class="p-view-content">
             <!-- Seller Information -->
             <div class="row">
               <div class="col-md-3 p-view-label">
@@ -23,51 +23,65 @@
               </div>
             </div>
 
-            <!-- Display Bid -->
-            <div class="row" ng-if="vm.product.currentBid == null">
-              <!-- Bidding form -->
-              <div class="col-md-3 p-view-label">
-                Starting Bid
-              </div>
-              <div class="col-md-9 p-view value">
-                {{vm.product.startingBid | currency}}
-              </div>
-            </div>
-
-            <div class="row" ng-if="vm.product.currentBid != null">
-              <!-- Bidding form -->
-              <div class="col-md-3 p-view-label">
-                Current Bid
-              </div>
-              <div class="col-md-9 p-view value">
-                {{vm.product.currentBid.amount | currency}}
-              </div>
-            </div>
-            <!-- End Display Bid -->
-            <div class="row" ng-if="vm.product.currentBid != null">
-              <!-- Bidding form -->
-              <div class="colcol-md-4 p-view-label">
-                Current Bid
-              </div>
-              <div class="col-md-4 p-view value">
-                {{vm.product.currentBid.amount | currency}}
-              </div>
-            </div>
-
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-
+            <!-- Seller Information -->
             <div class="row">
-              <!-- Time Information -->
-              <div class="col-md-3">
-                Ends
+              <div class="col-md-3 p-view-label">
+                End Time
               </div>
-              <div class="col-md-9">
-                Value
+              <div class="col-md-9 p-view value">
+                {{vm.product.endsAt | date:'yyyy-MM-dd HH:mm:ss' }}
+              </div>
+            </div>
+
+            <div class="p-view-bid">
+              <!-- Display Bid -->
+              <div class="row" ng-if="vm.product.currentBid == null">
+                <!-- Bidding form -->
+                <div class="col-md-3 p-view-label">
+                  Starting Bid
+                </div>
+                <div class="col-md-9 p-view value">
+                  <b>
+                  {{vm.product.startingBid | currency}}
+                </b>
+                </div>
+              </div>
+
+              <div class="row" ng-if="vm.product.currentBid != null">
+                <!-- Bidding form -->
+                <div class="col-md-3 p-view-label">
+                  Current Bid
+                </div>
+                <div class="col-md-9 p-view value">
+                  <b>
+                    {{vm.product.currentBid.amount | currency}}
+                  </b>
+                </div>
+              </div>
+              <!-- End Display Bid -->
+              <div class="row">
+                <div class="p-view-bid-input col-md-offset-3 col-md-4">
+                  <div>
+                    <input type="text" class="form-control" aria-label="...">
+                  </div>
+                  <div>
+                    <span>Enter {{vm.product.currentBid == null ? vm.product.startingBid : vm.product.currentBid.amount + vm.product.bidIncrement | currency}} or more</span>
+                  </div>
+                </div>
+                <div class="p-view-bid-btn col-md-3">
+                  <button type="button" class="btn btn-primary">Place Bid</button>
+                </div>
               </div>
             </div>
 
             <div class="row">
               <!-- Description -->
+              <div class="col-md-3 p-view-label">
+                Description
+              </div>
+              <div class="col-md-9 p-view value">
+                  {{vm.product.description}}
+              </div>
             </div>
 
           </div>

@@ -69,3 +69,36 @@
   border: 1px solid rgba(0,0,0,.2);
   background-color: rgba(0,0,0,.05);
 }
+
+.p-view-bid {
+  background-color: #e2e2e2;
+  padding: 10px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.p-view-content {
+  padding-top: 10px;
+}
+
+.p-view-content .row {
+  padding: 5px 0;
+}
+
+.p-view-header {
+  border-bottom: 1px solid #CCC;
+}
+
+.p-view-img {
+  filter: drop-shadow(3px 5px 5px #222);
+  -webkit-filter: drop-shadow(3px 5px 5px #222);
+  border-radius: 5px;
+}
+
+.p-view-label {
+  text-align: right;
+}
+
+.p-view-label::after {
+    content: "     :";
+}
