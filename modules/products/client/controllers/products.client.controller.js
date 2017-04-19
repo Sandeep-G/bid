@@ -63,7 +63,11 @@
     function makeBid() {
       vm.product.$bid({
         amount: vm.newBid
-      }, successCallback, errorCallback);
+      }, function(res) {
+        Notification.success('Wohoo! Bid placed successfully!');
+      }, function(res) {
+        Notification.error('Oops! Failed to bid!');
+      });
     }
 
     function makePayment() {
@@ -94,14 +98,12 @@
     }
 
     function successCallback(res) {
-      Notification.success('Wohoo! Bid placed successfully!');
       $state.go('products.view', {
         productId: res._id
       });
     }
 
     function errorCallback(res) {
-      Notification.error('Oops! Failed to bid!');
       vm.error = res.data.message;
     }
   }
