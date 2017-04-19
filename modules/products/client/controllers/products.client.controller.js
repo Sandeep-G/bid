@@ -92,12 +92,14 @@
     }
 
     function successCallback(res) {
+      Notification.success('Wohoo! Bid placed successfully!');
       $state.go('products.view', {
         productId: res._id
       });
     }
 
     function errorCallback(res) {
+      Notification.error('Oops! Failed to bid!');
       vm.error = res.data.message;
     }
   }
