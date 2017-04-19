@@ -68,6 +68,8 @@ a:hover .header-profile-image {
 
 #nav-search {
   margin-top: 7px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .nav-search-field {

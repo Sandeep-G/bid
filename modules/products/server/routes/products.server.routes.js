@@ -13,7 +13,7 @@ module.exports = function(app) {
     .post(products.create);
 
   app.route('/api/products/search').all(productsPolicy.isAllowed)
-    .post(products.create);
+    .post(products.search);
 
   app.route('/api/products/:productId').all(productsPolicy.isAllowed)
     .get(products.read)

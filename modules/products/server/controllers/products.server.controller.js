@@ -251,7 +251,19 @@ exports.delete = function(req, res) {
  * List of Products
  */
 exports.list = function(req, res) {
-  getProductList({}, res);
+  var keywords = [];
+  var category = req.query.category || 'all';
+  var searchKey = req.query.searchKey || '';
+  var tokens = searchKey.toString().split(/[\s,;]+/);
+  for (var i = 0; i < tokens.length; i++) {
+    if (tokens[i].trim() !== '')
+      keywords.push(tokens[i].trim());
+  }
+  var params = {
+    category: category,
+    keywords: keywords
+  };
+  getProductList(params, res);
 };
 
 /**

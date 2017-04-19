@@ -21,6 +21,9 @@
       }, bid: {
         method: 'PUT',
         url: '/api/products/:productId/bid'
+      }, search: {
+        method: 'POST',
+        url: '/api/products/search'
       }
     });
   }

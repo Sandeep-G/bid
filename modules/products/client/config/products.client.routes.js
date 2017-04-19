@@ -21,6 +21,19 @@
         controllerAs: 'vm',
         data: {
           pageTitle: 'Products List'
+        },
+        params: {
+          category: 'all',
+          searchKey: ''
+        }
+      })
+      .state('products.search', {
+        url: '/search',
+        templateUrl: '/modules/products/client/views/list-products.client.view.html',
+        controller: 'ProductsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Products List'
         }
       })
       .state('products.create', {
