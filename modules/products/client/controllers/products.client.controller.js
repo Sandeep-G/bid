@@ -42,7 +42,7 @@
     vm.product.endsAt = new Date(vm.product.endsAt);
     vm.isActive = vm.product.endsAt > new Date() && !vm.product.canceled && !vm.product.sold;
     vm.isAdmin = false;
-    var roles = vm.authentication.user.roles;
+    var roles = vm.authentication.user === null ? [] : vm.authentication.user.roles;
     for (var i = 0; i < roles.length; i++) {
       if (roles[i] === 'admin')
         vm.isAdmin = true;
