@@ -62,13 +62,19 @@
     }
 
     function makeBid() {
-      vm.product.$bid({
-        amount: vm.newBid
-      }, function(res) {
-        Notification.success('Wohoo! Bid placed successfully!');
-      }, function(res) {
-        Notification.error('Oops! Failed to bid!');
-      });
+      var isLoggedIn = vm.authentication.user !== null;
+      if (!isLoggedIn) {
+        Notification.error('Please sign in to place a bid.');
+        return;
+      } else {
+        vm.product.$bid({
+          amount: vm.newBid
+        }, function(res) {
+          Notification.success('Wohoo! Bid placed successfully!');
+        }, function(res) {
+          Notification.error('Oops! Failed to bid!');
+        });
+      }
     }
 
     function makePayment() {
